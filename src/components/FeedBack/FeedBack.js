@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import FeedBackOptions from '../FeedBackOptions/FeedbackOptions';
-import Statistics from '../Statistics/Statistics';
-import Section from '../Section/Section';
+import FeedBackOptions from '../FeedBackOptions';
+import Statistics from '../Statistics';
+import Section from '../Section';
 import s from './FeedBack.module.css';
 
 class FeedBack extends Component {

@@ -1,3 +1,7 @@
 .mainContainer {
   margin-left: 50px;
+  margin-top: 50px;
+  border: solid 1px black;
+  width: 300px;
+  height: 100%;
 }
