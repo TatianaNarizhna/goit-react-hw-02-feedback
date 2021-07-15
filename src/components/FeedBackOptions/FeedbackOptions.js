@@ -2,24 +2,36 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import s from './Feedback.module.css';
 
-const FeedBackOptions = ({ good, neutral, bad }) => (
-  <div className={s.buttonContainer}>
-    <button type="button" className={s.button} onClick={good}>
-      Good
+const FeedBackOptions = ({ feedback, onGiveFeedback }) => {
+  return (
+    <button
+      type="button"
+      className={s.button}
+      data-feedback={feedback}
+      onClick={onGiveFeedback}
+    >
+      {feedback}
     </button>
-    <button type="button" className={s.button} onClick={neutral}>
-      Neutral
-    </button>
-    <button type="button" className={s.button} onClick={bad}>
-      Bad
-    </button>
-  </div>
-);
-
-FeedBackOptions.propTypes = {
-  good: PropTypes.func.isRequired,
-  neutral: PropTypes.func.isRequired,
-  bad: PropTypes.func.isRequired,
+  );
 };
 
-export default FeedBackOptions;
+const LeaveFeedDack = ({ options, onGiveFeedback }) => {
+  return (
+    <div className={s.buttonContainer}>
+      {options.map(option => (
+        <FeedBackOptions
+          feedback={option}
+          onGiveFeedback={onGiveFeedback}
+          key={option.toString()}
+        />
+      ))}
+    </div>
+  );
+};
+
+FeedBackOptions.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string),
+  onGiveFeedback: PropTypes.func.isRequired,
+};
+
+export default LeaveFeedDack;

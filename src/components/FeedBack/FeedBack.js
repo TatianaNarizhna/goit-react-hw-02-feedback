@@ -4,6 +4,8 @@ import Statistics from '../Statistics';
 import Section from '../Section';
 import s from './FeedBack.module.css';
 
+import { FEEDBACK_OPTIONS } from '../Options/Options';
+
 class FeedBack extends Component {
   state = {
     good: 0,
@@ -11,22 +13,9 @@ class FeedBack extends Component {
     bad: 0,
   };
 
-  goodFeedBack = () => {
-    this.setState(prevState => ({
-      good: prevState.good + 1,
-    }));
-  };
-
-  neutralFeedBack = () => {
-    this.setState(prevState => ({
-      neutral: prevState.neutral + 1,
-    }));
-  };
-
-  badFeedBack = () => {
-    this.setState(prevState => ({
-      bad: prevState.bad + 1,
-    }));
+  changeFeedback = e => {
+    const { feedback } = e.target.dataset;
+    this.setState(prevState => ({ [feedback]: prevState[feedback] + 1 }));
   };
 
   countTotalFeedback = () => {
@@ -53,9 +42,8 @@ class FeedBack extends Component {
       <div className={s.mainContainer}>
         <Section title="Please leave feedback">
           <FeedBackOptions
-            good={this.goodFeedBack}
-            neutral={this.neutralFeedBack}
-            bad={this.badFeedBack}
+            options={FEEDBACK_OPTIONS}
+            onGiveFeedback={this.changeFeedback}
           />
         </Section>
 
